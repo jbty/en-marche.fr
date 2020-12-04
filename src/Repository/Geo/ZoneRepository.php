@@ -180,4 +180,21 @@ final class ZoneRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findForJecouteByReferentTagsAndParents(array $referentTags): array
+    {
+        $qb = $this->createQueryBuilder('zone');
+
+        return $qb
+            ->leftJoin('zone.children', 'child')
+            ->leftJoin('zone.parents', 'parent')
+            ->leftJoin(ReferentTag::class, 'tag', Join::WITH, 'zone = tag.zone')
+            ->leftJoin(ReferentTag::class, 'child_tag', Join::WITH, 'child = child_tag.zone')
+            ->leftJoin(ReferentTag::class, 'parent_tag', Join::WITH, 'parent = parent_tag.zone')
+            ->where('(tag IN (:tags) OR child_tag IN (:tags) OR parent_tag IN (:tags)')
+            ->setParameter('tags', $referentTags)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

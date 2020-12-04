@@ -8,9 +8,9 @@ use App\Entity\MyTeam\DelegatedAccess;
 use App\Repository\Geo\ZoneRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class SurveyManagedAreaVoter extends AbstractAdherentVoter
+class CanEditSurveyVoter extends AbstractAdherentVoter
 {
-    public const PERMISSION = 'IS_SURVEY_MANAGER_OF';
+    public const PERMISSION = 'CAN_EDIT_SURVEY';
 
     /** @var SessionInterface */
     private $session;
@@ -32,16 +32,15 @@ class SurveyManagedAreaVoter extends AbstractAdherentVoter
         /** @var LocalSurvey $subject */
         $surveyZone = $subject->getZone();
 
-        /** @var LocalSurvey $subject */
         if ($adherent->isJecouteManager()) {
             $managedZone = $adherent->getJecouteManagedArea()->getZone();
 
             return $surveyZone === $managedZone
-                || (!$subject->hasBlockedChanges() && ($managedZone->hasChild($surveyZone) || $managedZone->hasParent($surveyZone)));
+                || (!$subject->hasBlockedChanges() && $managedZone->hasChild($surveyZone));
         }
 
         if ($adherent->isReferent()) {
-            $zones = $this->zoneRepository->findForJecouteByReferentTagsAndParents($adherent->getManagedArea()->getTags()->toArray());
+            $zones = $this->zoneRepository->findForJecouteByReferentTags($adherent->getManagedArea()->getTags()->toArray());
 
             return \in_array($surveyZone, $zones);
         }
@@ -50,7 +49,7 @@ class SurveyManagedAreaVoter extends AbstractAdherentVoter
             $managedZone = $adherent->getCandidateManagedArea()->getZone();
 
             return $surveyZone === $managedZone
-                || (!$subject->hasBlockedChanges() && ($managedZone->hasChild($surveyZone) || $managedZone->hasParent($surveyZone)));
+                || (!$subject->hasBlockedChanges() && $managedZone->hasChild($surveyZone));
         }
 
         return false;
