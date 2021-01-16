@@ -40,6 +40,7 @@ class IdeaEndpointTest extends WebTestCase
             ['CONTENT_TYPE' => 'application/json'],
             json_encode($ideaData)
         );
+        var_dump($this->client->getResponse()->getContent());
 
         self::assertSame(200, $this->client->getResponse()->getStatusCode());
 

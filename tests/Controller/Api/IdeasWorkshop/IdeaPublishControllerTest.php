@@ -15,7 +15,13 @@ class IdeaPublishControllerTest extends WebTestCase
 
         $this->authenticateAsAdherent($this->client, 'jacques.picard@en-marche.fr');
 
-        $this->client->request('PUT', '/api/ideas-workshop/ideas/c14937d6-fd42-465c-8419-ced37f3e6194/publish');
+        $this->client->request(
+            'PUT',
+            '/api/ideas-workshop/ideas/c14937d6-fd42-465c-8419-ced37f3e6194/publish',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json']
+        );
 
         self::assertSame(400, $this->client->getResponse()->getStatusCode());
     }

@@ -579,7 +579,7 @@
         "version": "2.0.1"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.4"
     },
     "php-amqplib/php-amqplib": {
         "version": "v2.7.2"
@@ -1052,6 +1052,9 @@
     "symfony/options-resolver": {
         "version": "v4.4.17"
     },
+    "symfony/orm-pack": {
+        "version": "v2.1.0"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -1126,6 +1129,9 @@
     "symfony/serializer": {
         "version": "v4.4.17"
     },
+    "symfony/serializer-pack": {
+        "version": "v1.0.4"
+    },
     "symfony/service-contracts": {
         "version": "v2.2.0"
     },
@@ -1189,6 +1195,9 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.16"
+    },
+    "symfony/web-link": {
+        "version": "v4.4.18"
     },
     "symfony/web-profiler-bundle": {
         "version": "3.3",
