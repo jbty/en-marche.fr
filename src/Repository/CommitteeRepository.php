@@ -33,7 +33,6 @@ use Ramsey\Uuid\UuidInterface;
 class CommitteeRepository extends ServiceEntityRepository
 {
     use PaginatorTrait;
-
     use GeoFilterTrait;
     use NearbyTrait;
     use ReferentTrait;

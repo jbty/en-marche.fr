@@ -9,7 +9,7 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Ramsey\Uuid\Uuid;
 use Tests\App\Controller\ControllerTestTrait;
 
-class IdeaEndpointTest extends WebTestCase
+class IdeaEndpointsTest extends WebTestCase
 {
     use ControllerTestTrait;
 
@@ -40,7 +40,6 @@ class IdeaEndpointTest extends WebTestCase
             ['CONTENT_TYPE' => 'application/json'],
             json_encode($ideaData)
         );
-        var_dump($this->client->getResponse()->getContent());
 
         self::assertSame(200, $this->client->getResponse()->getStatusCode());
 

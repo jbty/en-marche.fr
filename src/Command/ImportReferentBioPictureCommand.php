@@ -150,7 +150,6 @@ class ImportReferentBioPictureCommand extends Command
             case ZipArchive::ER_INCONS: return 'Zip archive inconsistent';
             case ZipArchive::ER_REMOVE: return 'Can\'t remove file';
             case ZipArchive::ER_DELETED: return 'Entry has been deleted';
-
             default: return sprintf('Unknown status %s', $status);
         }
     }
