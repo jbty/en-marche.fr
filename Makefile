@@ -156,7 +156,6 @@ tfp-db: wait-for-db                                                             
 	$(CONSOLE) doctrine:database:create --env=test --no-debug
 	$(CONSOLE) doctrine:database:import --env=test -n --no-debug -- dump/dump-2019.sql
 	$(CONSOLE) doctrine:migration:migrate -n --no-debug --env=test
-	$(CONSOLE) doctrine:schema:validate --no-debug --env=test
 	$(CONSOLE) doctrine:fixtures:load --env=test -n
 
 tj: node_modules                                                                                       ## Run the Javascript tests
@@ -189,6 +188,8 @@ phpcsfix: vendor                                                                
 
 phpstan: vendor
 	$(EXEC) vendor/bin/phpstan analyse
+
+phplint: phpcsfix phpstan
 
 security-check: vendor                                                                                 ## Check for vulnerable dependencies
 	$(EXEC) vendor/bin/security-checker security:check

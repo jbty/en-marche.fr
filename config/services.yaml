@@ -74,7 +74,7 @@ services:
     # Imports
     App\:
         resource: '../src/*'
-        exclude: '../src/{Admin,Algolia,OAuth,Twig,Mailchimp,DependencyInjection,Controller,Entity,Security,Kernel.php}'
+        exclude: '../src/{Admin,Algolia,OAuth,Twig,Mailchimp,Migrations,DependencyInjection,Controller,Entity,Security,Kernel.php}'
     App\Algolia\:
         resource: '../src/Algolia/'
         exclude: '../src/Algolia/Sonata/{Pager,ProxyQuery}'

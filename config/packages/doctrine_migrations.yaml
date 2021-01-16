@@ -1,5 +1,6 @@
 doctrine_migrations:
-    dir_name: "%kernel.project_dir%/migrations"
-    namespace: Migrations
-    table_name: migrations
-    name: En Marche migrations
+    migrations_paths:
+        DoctrineMigrations: '%kernel.project_dir%/src/Migrations'
+    storage:
+        table_storage:
+            table_name: 'migrations'
